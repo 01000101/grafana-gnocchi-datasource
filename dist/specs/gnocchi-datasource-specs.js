@@ -895,7 +895,7 @@ describe('GnocchiDatasource', function () {
         beforeEach(function () {
             ds = new module_1.Datasource({
                 'url': 'http://localhost:5000',
-                'jsonData': { 'mode': 'keystone', 'username': 'user', 'project': 'proj', 'password': 'pass', 'domain': 'foo' }
+                'jsonData': { 'mode': 'keystone', 'username': 'user', 'project': 'proj', 'password': 'pass', 'domain': 'foo', 'endpoint': 'foo' }
             }, $q, backendSrv, templateSrv);
             $httpBackend.expect('POST', "http://localhost:5000/v3/auth/tokens", { "auth": { "identity": { "methods": ["password"],
                         "password": { "user": { "name": "user", "password": "pass", "domain": { "id": "foo" } } } },

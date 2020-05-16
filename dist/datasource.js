@@ -812,11 +812,11 @@ var GnocchiDatasource = /** @class */ (function () {
         else {
             callback().then(undefined, function (reason) {
                 if (reason.status === undefined) {
-                    reason.message = "Gnocchi error: No response status code, is CORS correctly configured ? (detail: " + reason + ")";
+                    reason.message = "Gnocchi is unreachable or CORS is misconfigured (detail: " + reason + ")";
                     deferred.reject(reason);
                 }
                 else if (reason.status === 0) {
-                    reason.message = "Gnocchi error: Connection failed";
+                    reason.message = "Gnocchi connection failed";
                     deferred.reject(reason);
                 }
                 else if (reason.status === 401) {
@@ -890,20 +890,20 @@ var GnocchiDatasource = /** @class */ (function () {
         }, function (reason) {
             var message;
             if (reason.status === 0) {
-                message = "Connection failed";
+                message = "Keystone connection failed";
             }
             else {
                 if (reason.status !== undefined) {
-                    message = '(' + reason.status + ' ' + reason.statusText + ') ';
+                    message = 'Keystone error: (' + reason.status + ' ' + reason.statusText + ') ';
                     if (reason.data && reason.data.error) {
                         message += ' ' + reason.data.error.message;
                     }
                 }
                 else {
-                    message = 'No response status code, is CORS correctly configured ?';
+                    message = 'Keystone is unreachable or CORS is misconfigured.';
                 }
             }
-            deferred.reject({ 'message': 'Keystone failure: ' + message });
+            deferred.reject({ 'message': message });
         });
     };
     return GnocchiDatasource;
