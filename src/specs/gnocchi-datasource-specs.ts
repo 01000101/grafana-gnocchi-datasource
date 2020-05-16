@@ -991,7 +991,7 @@ describe('GnocchiDatasource', function() {
     beforeEach(function() {
       ds = new Datasource({
         'url': 'http://localhost:5000',
-        'jsonData': {'mode': 'keystone', 'username': 'user', 'project': 'proj', 'password': 'pass', 'domain': 'foo'}
+        'jsonData': {'mode': 'keystone', 'username': 'user', 'project': 'proj', 'password': 'pass', 'domain': 'foo', 'endpoint': 'http://localhost:5000'}
       }, $q, backendSrv, templateSrv);
 
       $httpBackend.expect(
